@@ -4,13 +4,39 @@
 
 require('dotenv').config({ path: '.env.local' });
 
-const express = require('express');
-const path    = require('path');
-const multer  = require('multer');
+const express   = require('express');
+const path      = require('path');
+const multer    = require('multer');
+const helmet    = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 const app    = express();
 const PORT   = process.env.PORT || 3000;
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
+
+// ── Seguridad: headers HTTP ──
+app.use(helmet({
+  contentSecurityPolicy: false, // EJS + CDNs externos requieren CSP manual — desactivado por ahora
+}));
+
+// ── Rate limiting: máx 10 envíos de formulario por IP cada 15 min ──
+const formLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { ok: false, error: 'Demasiadas solicitudes. Intenta en 15 minutos.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// ── Multer: solo imágenes y PDF, máx 10 MB ──
+const ALLOWED_TYPES = ['image/jpeg','image/png','image/webp','image/gif','application/pdf'];
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    if (ALLOWED_TYPES.includes(file.mimetype)) cb(null, true);
+    else cb(new Error('Tipo de archivo no permitido'));
+  },
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -540,7 +566,7 @@ app.get(['/productos/:slug', '/producto/:slug'], (req, res) => {
   res.render('producto', { data, product });
 });
 
-app.post('/api/cotizacion', upload.single('archivo'), (req, res) => {
+app.post('/api/cotizacion', formLimiter, upload.single('archivo'), (req, res) => {
   // Respond immediately so the user always sees the success screen.
   // Monday integration runs in background and doesn't block UX.
   res.json({ ok: true });
@@ -563,7 +589,6 @@ app.post('/api/cotizacion', upload.single('archivo'), (req, res) => {
       console.log('Leads creados en Monday:', itemIds);
     } catch (err) {
       console.error('Monday (non-blocking):', err.message);
-      console.log('Form data received:', JSON.stringify(req.body, null, 2));
     }
   })();
 });
