@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= product.name %> — <%= data.brand.name %></title>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/producto.css">
+</head>
+<body class="pdp-page">
+
+  <%- include('partials/navbar', { data }) %>
+
+  <!-- ══ HERO ══ -->
+  <section class="pdp-hero">
+
+    <!-- Left -->
+    <div class="pdp-hero-left">
+      <a href="/#productos" class="pdp-back">
+        <i class="bi bi-arrow-left"></i> Todos los productos
+      </a>
+      <div class="pdp-hero-body">
+        <span class="pdp-eyebrow">EMPAQUE PERSONALIZADO</span>
+        <h1 class="pdp-hero-title"><%= product.name %></h1>
+        <p class="pdp-hero-sub"><%= product.desc %></p>
+
+        <% if (product.stats && product.stats.length) { %>
+        <div class="pdp-hero-badges">
+          <% product.stats.forEach(function(s) { %>
+            <span class="pdp-hero-badge"><%= s.val %> <em><%= s.lbl %></em></span>
+          <% }) %>
+        </div>
+        <% } %>
+
+        <div class="pdp-hero-ctas">
+          <a href="/#cotizador" class="pdp-btn-primary">
+            Cotizar empaque <i class="bi bi-arrow-right"></i>
+          </a>
+          <% if (product.finishes && product.finishes.length) { %>
+          <a href="#acabados" class="pdp-btn-ghost">
+            Ver acabados <i class="bi bi-arrow-down"></i>
+          </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="pdp-hero-right">
+      <span class="pdp-hero-num"><%= product.num %></span>
+      <div class="pdp-hero-img-wrap">
+        <img
+          src="/img/<%= product.slug %>.jpg"
+          alt="<%= product.name %>"
+          class="pdp-hero-img"
+          onerror="this.src='/img/<%= product.slug %>.png'; this.onerror=null;"
+        >
+      </div>
+      <div class="pdp-hero-tags">
+        <% product.applications.slice(0, 3).forEach(function(app) { %>
+          <span class="pdp-hero-tag"><%= app %></span>
+        <% }) %>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══ STATS BAR ══ -->
+  <% if (product.stats && product.stats.length) { %>
+  <div class="pdp-stats">
+    <% product.stats.forEach(function(s) { %>
+      <div class="pdp-stat">
+        <span class="pdp-stat-val"><%= s.val %></span>
+        <span class="pdp-stat-lbl"><%= s.lbl %></span>
+      </div>
+    <% }) %>
+  </div>
+  <% } %>
+
+
+  <!-- ══ POR QUÉ SE VE DIFERENTE ══ -->
+  <section class="pdp-why">
+    <div class="pdp-why-intro pdp-reveal">
+      <span class="pdp-eyebrow">Por qué se ve diferente</span>
+      <h2 class="pdp-section-h">El detalle<br><em>sí importa.</em></h2>
+      <p class="pdp-why-lead">Un buen empaque no solo protege tu producto. También cambia cómo perciben tu marca.</p>
+    </div>
+    <div class="pdp-why-blocks">
+      <% product.features.slice(0, 3).forEach(function(feat, i) { %>
+        <div class="pdp-why-block pdp-reveal" style="--d:<%= i * 80 %>ms">
+          <span class="pdp-why-n">0<%= i + 1 %></span>
+          <p class="pdp-why-txt"><%= feat %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+
+  <!-- ══ SPECS ══ -->
+  <% if (product.specs) { %>
+  <section class="pdp-specs">
+    <div class="pdp-specs-header pdp-reveal">
+      <span class="pdp-eyebrow">Ficha técnica</span>
+      <h2 class="pdp-section-h">Detalles que<br><em>importan.</em></h2>
+    </div>
+    <dl class="pdp-specs-grid">
+      <% Object.entries(product.specs).forEach(function([key, val], i) { %>
+        <div class="pdp-spec-row pdp-reveal" style="--d:<%= i * 40 %>ms">
+          <dt class="pdp-spec-key"><%= key %></dt>
+          <dd class="pdp-spec-val"><%= val %></dd>
+        </div>
+      <% }) %>
+    </dl>
+  </section>
+  <% } %>
+
+
+  <!-- ══ FORMATOS ══ -->
+  <% if (product.variants && product.variants.length > 1) { %>
+  <section class="pdp-formats" id="formatos">
+    <div class="pdp-formats-head">
+      <div class="pdp-reveal">
+        <span class="pdp-eyebrow">Estilos disponibles</span>
+        <h2 class="pdp-section-h">Elige el formato<br><em>ideal.</em></h2>
+      </div>
+      <span class="pdp-scroll-hint">Desliza <i class="bi bi-arrow-right"></i></span>
+    </div>
+    <div class="pdp-formats-track">
+      <% product.variants.forEach(function(v, i) { %>
+        <div class="pdp-format-card pdp-reveal" style="--d:<%= i * 70 %>ms">
+          <div class="pdp-format-img">
+            <img src="/img/<%= v.img %>" alt="<%= v.label %>" loading="lazy">
+          </div>
+          <p class="pdp-format-lbl"><%= v.label %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+
+
+  <!-- ══ ACABADOS — MATERIAL LIBRARY ══ -->
+  <% if (product.finishes && product.finishes.length) { %>
+  <section class="pdp-finishes" id="acabados">
+    <div class="pdp-finishes-head">
+      <div class="pdp-reveal">
+        <span class="pdp-eyebrow pdp-eyebrow--gold">Acabados &amp; Materiales</span>
+        <h2 class="pdp-section-h pdp-section-h--white">Acabados que elevan<br><em>la percepción.</em></h2>
+      </div>
+      <span class="pdp-scroll-hint pdp-scroll-hint--lt">Desliza <i class="bi bi-arrow-right"></i></span>
+    </div>
+    <div class="pdp-finishes-track">
+      <% product.finishes.forEach(function(f, i) { %>
+        <div class="pdp-finish-card pdp-reveal" style="--d:<%= i * 45 %>ms">
+          <div class="pdp-finish-img">
+            <img src="/img/<%= f.img %>" alt="<%= f.label %>" loading="lazy">
+          </div>
+          <span class="pdp-finish-lbl"><%= f.label %></span>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+
+
+  <!-- ══ INDUSTRIAS ══ -->
+  <section class="pdp-industries">
+    <div class="pdp-industries-intro pdp-reveal">
+      <span class="pdp-eyebrow">Industrias</span>
+      <h2 class="pdp-section-h">Diseñado para<br><em>marcas de:</em></h2>
+    </div>
+    <div class="pdp-industries-grid">
+      <% product.applications.forEach(function(app, i) { %>
+        <span class="pdp-industry-item pdp-reveal" style="--d:<%= i * 50 %>ms"><%= app %></span>
+      <% }) %>
+    </div>
+  </section>
+
+
+  <!-- ══ PROCESO ══ -->
+  <section class="pdp-process">
+    <div class="pdp-process-head pdp-reveal">
+      <span class="pdp-eyebrow">Nuestro proceso</span>
+      <h2 class="pdp-section-h">De idea a<br><em>empaque final.</em></h2>
+    </div>
+    <div class="pdp-process-steps">
+      <div class="pdp-process-step pdp-reveal" style="--d:0ms">
+        <span class="pdp-process-n">01</span>
+        <div class="pdp-process-line"></div>
+        <h3 class="pdp-process-title">Cuéntanos tu producto</h3>
+        <p class="pdp-process-desc">Compártenos tu idea, volúmenes estimados y cualquier requerimiento especial. Sin compromisos.</p>
+      </div>
+      <div class="pdp-process-step pdp-reveal" style="--d:100ms">
+        <span class="pdp-process-n">02</span>
+        <div class="pdp-process-line"></div>
+        <h3 class="pdp-process-title">Definimos materiales</h3>
+        <p class="pdp-process-desc">Proponemos materiales, acabados y estructura pensados específicamente para tu categoría.</p>
+      </div>
+      <div class="pdp-process-step pdp-reveal" style="--d:200ms">
+        <span class="pdp-process-n">03</span>
+        <div class="pdp-process-line"></div>
+        <h3 class="pdp-process-title">Desarrollamos el diseño</h3>
+        <p class="pdp-process-desc">Arte final, revisiones y muestra física disponible antes de aprobar la producción.</p>
+      </div>
+      <div class="pdp-process-step pdp-reveal" style="--d:300ms">
+        <span class="pdp-process-n">04</span>
+        <div class="pdp-process-line pdp-process-line--last"></div>
+        <h3 class="pdp-process-title">Producción y entrega</h3>
+        <p class="pdp-process-desc">Producción en 3–5 semanas. Entregamos directo a tu almacén o punto de uso.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ GALERÍA PREMIUM ══ -->
+  <% if (product.examples && product.examples.length) { %>
+  <section class="pdp-gallery" id="ejemplos">
+    <div class="pdp-gallery-head pdp-reveal">
+      <span class="pdp-eyebrow">Trabajos realizados</span>
+      <h2 class="pdp-section-h">Empaques que sí<br><em>llaman la atención.</em></h2>
+    </div>
+    <div class="pdp-gallery-grid">
+      <% product.examples.forEach(function(ex, i) { %>
+        <div class="pdp-gallery-item pdp-gallery-item--<%= i + 1 %> pdp-reveal" style="--d:<%= i * 60 %>ms">
+          <img src="/img/<%= ex.img %>" alt="<%= ex.label %>" loading="lazy">
+          <span class="pdp-gallery-lbl"><%= ex.label %></span>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+
+
+  <!-- ══ FINAL CTA ══ -->
+  <section class="pdp-final-cta">
+    <p class="pdp-final-label pdp-reveal">¿Ya tienes todo claro?</p>
+    <h2 class="pdp-final-title pdp-reveal">
+      Cotiza tu<br><em>empaque hoy.</em>
+    </h2>
+    <a href="/#cotizador" class="pdp-final-btn pdp-reveal">
+      Iniciar cotización <i class="bi bi-arrow-right"></i>
+    </a>
+  </section>
+
+  <%- include('partials/footer', { data }) %>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="/js/animations.js"></script>
+  <script defer src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!-- ============================================================
+     HERO V5 — Premium Editorial / Cinematic
+     Arquitectura: left (texto) + right (productos editorialwide)
+     Animaciones: curtain reveal | blur entrance | mouse parallax
+                  float idle | magnetic CTA | cursor glow | grain
+     ============================================================ -->
+<section class="hero-v5" id="hero">
+
+  <!-- ── Capas de fondo ── -->
+  <!-- Grain procedural via SVG filter -->
+  <svg class="hv5-noise" aria-hidden="true" focusable="false">
+    <filter id="hv5nf">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72 0.65" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#hv5nf)"/>
+  </svg>
+  <!-- Radial lights atmosféricos -->
+  <div class="hv5-ambient" aria-hidden="true"></div>
+
+  <!-- ── IZQUIERDA: Texto editorial ── -->
+  <div class="hv5-left">
+
+    <!-- Eyebrow -->
+    <div class="hv5-eyebrow">
+      <span class="hv5-ew-bar"></span>
+      <span class="hv5-ew-text">Packaging Premium</span>
+    </div>
+
+    <!-- Headline: curtain reveal por línea -->
+    <h1 class="hv5-title">
+      <span class="hv5-clip">
+        <span class="hv5-clip-in" style="--d:.22s">Empaques</span>
+      </span>
+      <span class="hv5-clip">
+        <span class="hv5-clip-in hv5-serif" style="--d:.38s">que elevan</span>
+      </span>
+      <span class="hv5-clip">
+        <span class="hv5-clip-in" style="--d:.54s">tu marca.</span>
+      </span>
+    </h1>
+
+    <!-- Línea expansiva -->
+    <div class="hv5-rule" style="--d:.78s"></div>
+
+    <!-- Subtítulo -->
+    <p class="hv5-sub" style="--d:.92s">
+      Packaging personalizado de grado alimenticio.<br>
+      Del concepto al anaquel.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hv5-actions" style="--d:1.08s">
+      <a href="#contactar" class="hv5-cta" id="hv5Cta">
+        <span class="hv5-cta-label">Cotizar proyecto</span>
+        <span class="hv5-cta-icon" aria-hidden="true">
+          <i class="bi bi-arrow-right"></i>
+        </span>
+      </a>
+      <a href="#productos" class="hv5-ghost-link">Ver catálogo</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="hv5-stats" style="--d:1.28s">
+      <div class="hv5-stat">
+        <b class="hv5-stat-n">4</b>
+        <span class="hv5-stat-l">líneas</span>
+      </div>
+      <div class="hv5-stat-div"></div>
+      <div class="hv5-stat">
+        <b class="hv5-stat-n">100%</b>
+        <span class="hv5-stat-l">personalizable</span>
+      </div>
+      <div class="hv5-stat-div"></div>
+      <div class="hv5-stat">
+        <b class="hv5-stat-n">15 días</b>
+        <span class="hv5-stat-l">entrega</span>
+      </div>
+    </div>
+
+  </div><!-- /hv5-left -->
+
+  <!-- ── DERECHA: Composición editorial de productos ── -->
+  <div class="hv5-right" id="hv5Right">
+
+    <!-- Glow estático detrás de productos -->
+    <div class="hv5-prod-glow" aria-hidden="true"></div>
+
+    <!-- Cursor glow que sigue el mouse -->
+    <div class="hv5-cursor-glow" id="hv5CursorGlow" aria-hidden="true"></div>
+
+    <!-- ── PRODUCTO HERO: Pouch (frente, más grande) ── -->
+    <!-- Depth factor alto = más movimiento con mouse = se siente más cerca -->
+    <div class="hv5-prod hv5-p1" style="--d:.32s">
+      <div class="hv5-pfloat"><!-- float idle -->
+        <div class="hv5-ppar" data-depth="0.028"><!-- parallax JS -->
+          <div class="hv5-pimg hv5-pimg--sharp">
+            <img src="/img/hero-pouch.jpg" alt="Bolsas Personalizadas" draggable="false" loading="eager">
+          </div>
+          <!-- Badge flotante -->
+          <div class="hv5-pbadge hv5-pbadge--tr">
+            <i class="bi bi-patch-check-fill"></i> Grado Alimenticio
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Tubo: arriba izquierda, más atrás (depth bajo = menos movimiento) ── -->
+    <div class="hv5-prod hv5-p2" style="--d:.56s">
+      <div class="hv5-pfloat">
+        <div class="hv5-ppar" data-depth="0.014">
+          <div class="hv5-pimg hv5-pimg--blur2">
+            <img src="/img/hero-tubo.jpg" alt="Tubos de Cartón" draggable="false" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Caja: derecha media, capa intermedia ── -->
+    <div class="hv5-prod hv5-p3" style="--d:.74s">
+      <div class="hv5-pfloat">
+        <div class="hv5-ppar" data-depth="0.034">
+          <div class="hv5-pimg hv5-pimg--blur1">
+            <img src="/img/hero-caja.jpg" alt="Cajas de Cartón" draggable="false" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Sachet: abajo izquierda, más atrás ── -->
+    <div class="hv5-prod hv5-p4" style="--d:.90s">
+      <div class="hv5-pfloat">
+        <div class="hv5-ppar" data-depth="0.010">
+          <div class="hv5-pimg hv5-pimg--blur3">
+            <img src="/img/hero-sachet.jpg" alt="Sachets" draggable="false" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hv5-right -->
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+</section>
+
+<script>
+/* =========================================================
+   HERO V5 — Sistema de animaciones interactivas
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ── 1. Mouse parallax por capas de profundidad ── */
+  var pars   = document.querySelectorAll('.hv5-ppar');
+  var mx = 0, my = 0, cx = 0, cy = 0;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tickParallax() {
+    cx = lerp(cx, mx, 0.06);
+    cy = lerp(cy, my, 0.06);
+    for (var i = 0; i < pars.length; i++) {
+      var d  = parseFloat(pars[i].dataset.depth) || 0.02;
+      var tx = (cx * d).toFixed(2);
+      var ty = (cy * d).toFixed(2);
+      pars[i].style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+    }
+    requestAnimationFrame(tickParallax);
+  }
+
+  window.addEventListener('mousemove', function (e) {
+    mx = e.clientX - window.innerWidth  / 2;
+    my = e.clientY - window.innerHeight / 2;
+  }, { passive: true });
+
+  requestAnimationFrame(tickParallax);
+
+  /* ── 2. Cursor glow dentro de la zona de productos ── */
+  var glow  = document.getElementById('hv5CursorGlow');
+  var right = document.getElementById('hv5Right');
+
+  if (glow && right) {
+    right.addEventListener('mouseenter', function () { glow.style.opacity = '1'; });
+    right.addEventListener('mouseleave', function () { glow.style.opacity = '0'; });
+    right.addEventListener('mousemove', function (e) {
+      var r = right.getBoundingClientRect();
+      glow.style.left = (e.clientX - r.left) + 'px';
+      glow.style.top  = (e.clientY - r.top)  + 'px';
+    }, { passive: true });
+  }
+
+  /* ── 3. Botón magnético ── */
+  var cta = document.getElementById('hv5Cta');
+  if (cta) {
+    cta.addEventListener('mousemove', function (e) {
+      var r  = cta.getBoundingClientRect();
+      var dx = (e.clientX - r.left - r.width  / 2) * 0.28;
+      var dy = (e.clientY - r.top  - r.height / 2) * 0.28;
+      cta.style.transition = 'transform 0.12s ease';
+      cta.style.transform  = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+    });
+    cta.addEventListener('mouseleave', function () {
+      cta.style.transition = 'transform 0.65s cubic-bezier(0.16,1,0.3,1)';
+      cta.style.transform  = '';
+    });
+  }
+
+})();
+</script>

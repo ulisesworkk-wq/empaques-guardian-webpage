@@ -1,0 +1,214 @@
+<!-- ================================================================
+     HERO V6 — Brand Campaign / Cinematic Editorial
+     ────────────────────────────────────────────────────────────────
+     Decisiones clave:
+     · mix-blend-mode: multiply en Pouch → flota SIN fondo blanco
+     · Productos atmosféricos con mask-image gradients → se disuelven
+     · Vignette + warm studio lighting → sensación de photoshoot
+     · Reactive ambient light → sigue cursor con CSS custom property
+     · Pouch sangra sobre la zona de texto → tensión editorial
+     · Annotations tipográficas → editorial magazine feel
+     · Todo: 3 wrappers por producto (position / float / parallax)
+     ================================================================ -->
+<section class="hero-v6" id="hero">
+
+  <!-- ── Capas de atmósfera ── -->
+  <div class="hv6-bg"       aria-hidden="true"></div>
+  <div class="hv6-vignette" aria-hidden="true"></div>
+  <div class="hv6-cursor-light" id="hv6CursorLight" aria-hidden="true"></div>
+  <svg class="hv6-grain" aria-hidden="true" focusable="false">
+    <filter id="hv6gn">
+      <feTurbulence type="fractalNoise" baseFrequency="0.68 0.60" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#hv6gn)"/>
+  </svg>
+
+  <!-- ════════════════════════════════════
+       IZQUIERDA — Editorial text
+       ════════════════════════════════════ -->
+  <div class="hv6-left">
+
+    <!-- Eyebrow -->
+    <div class="hv6-eyebrow">
+      <span class="hv6-ew-bar"></span>
+      <span class="hv6-ew-text">Guardian Packaging</span>
+    </div>
+
+    <!--
+      Headline: curtain reveal línea por línea.
+      "que elevan" indentado = tensión visual editorial.
+      Serif italic ≠ sans = combinación premium (Aesop / Rimowa).
+    -->
+    <h1 class="hv6-title">
+      <span class="hv6-tl">
+        <span class="hv6-ti" style="--d:.20s">Empaques</span>
+      </span>
+      <span class="hv6-tl hv6-tl--indent">
+        <span class="hv6-ti hv6-serif" style="--d:.36s">que elevan</span>
+      </span>
+      <span class="hv6-tl">
+        <span class="hv6-ti" style="--d:.52s">tu marca.</span>
+      </span>
+    </h1>
+
+    <div class="hv6-rule" style="--d:.75s"></div>
+
+    <p class="hv6-sub" style="--d:.90s">
+      Packaging de grado alimenticio, diseñado<br>
+      para marcas que quieren destacar.
+    </p>
+
+    <!-- Magnetic CTA -->
+    <div class="hv6-actions" style="--d:1.05s">
+      <a href="#contactar" class="hv6-cta" id="hv6Cta">
+        <span class="hv6-cta-text">Cotizar proyecto</span>
+        <span class="hv6-cta-arrow" aria-hidden="true">
+          <i class="bi bi-arrow-right"></i>
+        </span>
+      </a>
+      <a href="#productos" class="hv6-link">Ver catálogo</a>
+    </div>
+
+    <!-- Social proof — muy sutil, editorial -->
+    <p class="hv6-proof" style="--d:1.22s">
+      <span class="hv6-proof-dash">—</span>
+      Más de 500 marcas en México y Latinoamérica
+    </p>
+
+  </div><!-- /hv6-left -->
+
+  <!-- ════════════════════════════════════
+       PRODUCTO HÉROE — Pouch
+       Posición: sangra sobre la col de texto
+       mix-blend-mode: multiply → fondo blanco desaparece
+       Rotation: -4.5° → orgánico, no gridded
+       ════════════════════════════════════ -->
+  <div class="hv6-prod hv6-pouch" id="hv6Pouch">
+    <div class="hv6-pf" id="hv6PouchFloat"><!-- float idle -->
+      <div class="hv6-pp" data-depth="0.020"><!-- parallax -->
+
+        <img src="/img/hero-pouch.jpg" alt="Bolsas Personalizadas"
+             class="hv6-img hv6-img--hero" draggable="false" loading="eager">
+
+        <!-- Annotation editorial — bottom left del producto -->
+        <div class="hv6-ann">
+          <span class="hv6-ann-num">01</span>
+          <span class="hv6-ann-bar"></span>
+          <span class="hv6-ann-label">Bolsa Pouch</span>
+        </div>
+
+        <!-- Badge glassmorphism — top right -->
+        <div class="hv6-badge">
+          <i class="bi bi-patch-check-fill"></i>
+          Grado Alimenticio
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       TUBO — Atmosférico, abajo derecha
+       Parcialmente fuera de frame (crop bottom)
+       mask-image: se disuelve hacia abajo
+       ════════════════════════════════════ -->
+  <div class="hv6-prod hv6-tubo" style="--d:.58s">
+    <div class="hv6-pf hv6-pf--tubo">
+      <div class="hv6-pp" data-depth="0.009">
+        <img src="/img/hero-tubo.jpg" alt=""
+             class="hv6-img hv6-img--tubo" draggable="false" loading="lazy" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       CAJA — Atmosférico, arriba derecha
+       Rotado + parcialmente fuera de frame
+       mask-image: se disuelve hacia derecha
+       ════════════════════════════════════ -->
+  <div class="hv6-prod hv6-caja" style="--d:.75s">
+    <div class="hv6-pf hv6-pf--caja">
+      <div class="hv6-pp" data-depth="0.028">
+        <img src="/img/hero-caja.jpg" alt=""
+             class="hv6-img hv6-img--caja" draggable="false" loading="lazy" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SACHET — Muy atmosférico, casi invisible
+       Solo presencia de profundidad
+       ════════════════════════════════════ -->
+  <div class="hv6-prod hv6-sachet" style="--d:.92s">
+    <div class="hv6-pf hv6-pf--sachet">
+      <div class="hv6-pp" data-depth="0.006">
+        <img src="/img/hero-sachet.jpg" alt=""
+             class="hv6-img hv6-img--sachet" draggable="false" loading="lazy" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+</section>
+
+<script>
+/* ====================================================
+   HERO V6 — Motion System
+   3 sistemas independientes sin conflicto de transforms:
+   · hv6-prod  → position + entrance (scale + opacity)
+   · hv6-pf    → float idle (CSS animation, translateY + rotate)
+   · hv6-pp    → parallax (JS style.transform, translate)
+   ==================================================== */
+(function () {
+  'use strict';
+
+  /* ── 1. Mouse parallax multi-capa ── */
+  var pps = document.querySelectorAll('.hv6-pp');
+  var mx = 0, my = 0, cx = 0, cy = 0;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  ;(function tick() {
+    cx = lerp(cx, mx, 0.055);
+    cy = lerp(cy, my, 0.055);
+    for (var i = 0; i < pps.length; i++) {
+      var d  = parseFloat(pps[i].dataset.depth) || 0.015;
+      pps[i].style.transform =
+        'translate(' + (cx * d).toFixed(2) + 'px,' + (cy * d).toFixed(2) + 'px)';
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  window.addEventListener('mousemove', function (e) {
+    mx = e.clientX - window.innerWidth  * 0.5;
+    my = e.clientY - window.innerHeight * 0.5;
+    /* Reactive cursor light via CSS custom property */
+    var xl = (e.clientX / window.innerWidth  * 100).toFixed(1);
+    var yl = (e.clientY / window.innerHeight * 100).toFixed(1);
+    document.getElementById('hv6CursorLight').style.background =
+      'radial-gradient(circle 420px at ' + xl + '% ' + yl + '%, rgba(245,184,46,0.065) 0%, transparent 65%)';
+  }, { passive: true });
+
+  /* ── 2. Botón magnético con spring-back ── */
+  var cta = document.getElementById('hv6Cta');
+  if (cta) {
+    cta.addEventListener('mousemove', function (e) {
+      var r  = cta.getBoundingClientRect();
+      var dx = (e.clientX - r.left - r.width  * 0.5) * 0.30;
+      var dy = (e.clientY - r.top  - r.height * 0.5) * 0.30;
+      cta.style.transition = 'transform 0.10s ease';
+      cta.style.transform  = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+    });
+    cta.addEventListener('mouseleave', function () {
+      cta.style.transition = 'transform 0.70s cubic-bezier(0.16,1,0.3,1)';
+      cta.style.transform  = '';
+    });
+  }
+
+})();
+</script>

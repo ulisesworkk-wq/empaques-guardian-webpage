@@ -1,0 +1,152 @@
+<!-- ============== SHOWCASE INTERACTIVO DE PRODUCTOS ============== -->
+<section class="showcase-section" id="productos">
+
+  <div class="container px-4 px-lg-5">
+    <div class="showcase-header reveal-up">
+      <span class="section-eyebrow">Catálogo</span>
+      <h2 class="section-title">
+        Un <span class="serif-italic">empaque</span><br>para cada necesidad.
+      </h2>
+      <p class="section-lead">
+        Cuatro líneas especializadas de packaging. Cada una diseñada para una categoría, certificada para tu industria.
+      </p>
+    </div>
+  </div>
+
+  <div class="container px-4 px-lg-5">
+    <div class="showcase-stage reveal-up delay-2">
+
+      <div class="showcase-bg">
+        <img src="/img/products-showcase.jpg" class="showcase-img" id="showcaseImg" alt="Guardian Packaging — línea de productos">
+        <div class="showcase-placeholder" id="showcasePlaceholder">
+          <div class="sp-grid-lines"></div>
+          <svg class="sp-svg sp-svg--1" viewBox="0 0 110 130" fill="none">
+            <path d="M22 30Q55 16 88 30L93 118Q55 132 17 118Z" fill="rgba(255,255,255,.06)"/>
+            <path d="M22 30Q55 16 88 30L90 42Q55 30 20 42Z" fill="rgba(255,255,255,.08)"/>
+            <rect x="34" y="56" width="42" height="46" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          </svg>
+          <svg class="sp-svg sp-svg--2" viewBox="0 0 120 100" fill="none">
+            <rect x="12" y="20" width="96" height="60" rx="6" fill="rgba(255,255,255,.06)"/>
+            <rect x="34" y="40" width="52" height="20" rx="4" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+          </svg>
+          <svg class="sp-svg sp-svg--3" viewBox="0 0 120 120" fill="none">
+            <path d="M16 52L60 34l44 18L60 70Z" fill="rgba(255,255,255,.05)"/>
+            <path d="M16 52L60 70v46L16 98Z" fill="rgba(255,255,255,.08)"/>
+            <path d="M104 52L60 70v46l44-20Z" fill="rgba(255,255,255,.06)"/>
+          </svg>
+          <svg class="sp-svg sp-svg--4" viewBox="0 0 90 140" fill="none">
+            <ellipse cx="45" cy="30" rx="24" ry="10" fill="rgba(255,255,255,.05)"/>
+            <rect x="21" y="30" width="48" height="90" fill="rgba(255,255,255,.07)"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Hotspot 01: Bolsas -->
+      <div class="showcase-hotspot" data-idx="0" style="--hx:13%;--hy:10%">
+        <button class="hotspot-dot" aria-label="Bolsas Personalizadas">
+          <span class="hotspot-num">01</span>
+          <span class="hotspot-ring"></span>
+        </button>
+        <div class="hotspot-card hotspot-card--left">
+          <span class="hotspot-card-badge">01</span>
+          <h3 class="hotspot-card-name">Bolsas Personalizadas</h3>
+          <p class="hotspot-card-desc">Stand-up, spout, fondo plano y formas especiales. Grado alimenticio.</p>
+          <a href="/productos/bolsas-personalizadas" class="hotspot-card-link">Ver detalles <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Hotspot 04: Tubos -->
+      <div class="showcase-hotspot" data-idx="3" style="--hx:71%;--hy:12%">
+        <button class="hotspot-dot" aria-label="Tubos de Cartón">
+          <span class="hotspot-num">04</span>
+          <span class="hotspot-ring"></span>
+        </button>
+        <div class="hotspot-card hotspot-card--right">
+          <span class="hotspot-card-badge">04</span>
+          <h3 class="hotspot-card-name">Tubos de Cartón</h3>
+          <p class="hotspot-card-desc">Tubos cilíndricos en diámetro y altura a medida, acabado premium.</p>
+          <a href="/productos/tubos-carton" class="hotspot-card-link">Ver detalles <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Hotspot 02: Sachets -->
+      <div class="showcase-hotspot" data-idx="1" style="--hx:22%;--hy:70%">
+        <button class="hotspot-dot" aria-label="Sachets / 3 Sellos">
+          <span class="hotspot-num">02</span>
+          <span class="hotspot-ring"></span>
+        </button>
+        <div class="hotspot-card hotspot-card--left">
+          <span class="hotspot-card-badge">02</span>
+          <h3 class="hotspot-card-name">Sachets / 3 Sellos</h3>
+          <p class="hotspot-card-desc">Bolsas individuales selladas, porciones premium a medida.</p>
+          <a href="/productos/sachets-3-sellos" class="hotspot-card-link">Ver detalles <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Hotspot 03: Cajas -->
+      <div class="showcase-hotspot" data-idx="2" style="--hx:81%;--hy:70%">
+        <button class="hotspot-dot" aria-label="Cajas de Cartón">
+          <span class="hotspot-num">03</span>
+          <span class="hotspot-ring"></span>
+        </button>
+        <div class="hotspot-card hotspot-card--right">
+          <span class="hotspot-card-badge">03</span>
+          <h3 class="hotspot-card-name">Cajas de Cartón</h3>
+          <p class="hotspot-card-desc">Cajas personalizadas con acabados matte, foil y UV localizado.</p>
+          <a href="/productos/cajas-carton" class="hotspot-card-link">Ver detalles <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+      </div>
+
+    </div><!-- /showcase-stage -->
+  </div>
+
+  <!-- Fallback mobile -->
+  <div class="showcase-mobile container px-4 px-lg-5">
+    <% data.products.forEach(function(prod) { %>
+      <a href="/productos/<%= prod.slug %>" class="showcase-mob-card reveal-up">
+        <span class="showcase-mob-num"><%= prod.num %></span>
+        <div class="showcase-mob-info">
+          <p class="showcase-mob-name"><%= prod.name %></p>
+          <p class="showcase-mob-desc"><%= prod.short %></p>
+        </div>
+        <i class="bi bi-arrow-up-right showcase-mob-arrow"></i>
+      </a>
+    <% }) %>
+  </div>
+
+</section>
+
+<script>
+  document.getElementById('showcaseImg')?.addEventListener('load', function() {
+    document.getElementById('showcasePlaceholder').style.display = 'none';
+  });
+
+  var showcaseImg = document.getElementById('showcaseImg');
+
+  document.querySelectorAll('.showcase-hotspot').forEach(function(hotspot) {
+    let hideTimer = null;
+
+    hotspot.addEventListener('mouseenter', function() {
+      clearTimeout(hideTimer);
+      hotspot.classList.add('active');
+
+      if (showcaseImg) {
+        var hx = hotspot.style.getPropertyValue('--hx') || '50%';
+        var hy = hotspot.style.getPropertyValue('--hy') || '50%';
+        showcaseImg.style.transformOrigin = hx + ' ' + hy;
+        showcaseImg.style.transform = 'scale(1.12)';
+      }
+    });
+
+    hotspot.addEventListener('mouseleave', function() {
+      hideTimer = setTimeout(function() {
+        hotspot.classList.remove('active');
+      }, 2000);
+
+      if (showcaseImg) {
+        showcaseImg.style.transform = 'scale(1)';
+      }
+    });
+  });
+
+</script>

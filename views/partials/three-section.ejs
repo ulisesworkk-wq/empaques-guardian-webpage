@@ -1,0 +1,31 @@
+<!-- ============== SECCIÓN 3D (Three.js, scroll-driven) ============== -->
+<!-- Réplica del concepto "Cargando frames..." de Ultrapac:
+     un objeto 3D que rota/cambia conforme haces scroll -->
+<section class="three-section" id="experience3d">
+  <!-- El canvas se monta aquí desde three-scene.js -->
+  <div class="three-canvas-container" id="threeCanvas"></div>
+
+  <!-- Indicador de carga de frames (estilo Ultrapac) -->
+  <div class="frame-progress">
+    <span class="frame-label">Cargando frames...</span>
+    <div class="frame-bar"><div class="frame-bar-fill" id="frameProgress"></div></div>
+    <span class="frame-percent" id="framePercent">0%</span>
+  </div>
+
+  <!-- Texto fijo encima del canvas -->
+  <div class="three-overlay">
+    <div class="container-fluid px-4 px-lg-5 h-100">
+      <div class="row h-100 align-items-end pb-5">
+        <div class="col-lg-6">
+          <span class="section-eyebrow light">Experiencia 3D</span>
+          <h2 class="section-title-light">
+            Explora cada <span class="serif-italic">detalle</span>.
+          </h2>
+          <p class="three-lead">
+            [Texto descriptivo de 1–2 líneas. La cámara y el modelo responden al scroll de la página.]
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

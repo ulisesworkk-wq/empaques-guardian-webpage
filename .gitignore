@@ -1,0 +1,31 @@
+# Dependencias
+node_modules/
+configurator/node_modules/
+configurator/.next/
+.next/
+
+# Variables de entorno — NUNCA subir al repo
+.env.local
+.env*.local
+configurator/.env.local
+configurator/.env*.local
+
+# Build outputs
+dist/
+build/
+configurator/tsconfig.tsbuildinfo
+configurator/next-env.d.ts
+
+# Sistema
+.DS_Store
+*.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.bak

@@ -1,0 +1,32 @@
+<!-- ============== FAQ ============== -->
+<section class="faq-section">
+  <div class="container-fluid px-4 px-lg-5">
+    <div class="row">
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <span class="section-eyebrow reveal-up">FAQ</span>
+        <h2 class="section-title reveal-up delay-1">
+          Preguntas <span class="serif-italic">frecuentes</span>
+        </h2>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="accordion accordion-flush faq-accordion" id="faqAccordion">
+          <% data.faqs.forEach((faq, i) => { %>
+            <div class="accordion-item reveal-up" style="--delay: <%= i * 0.1 %>s">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq<%= i %>">
+                  <%= faq.q %>
+                </button>
+              </h3>
+              <div id="faq<%= i %>" class="accordion-collapse collapse"
+                   data-bs-parent="#faqAccordion">
+                <div class="accordion-body"><%= faq.a %></div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

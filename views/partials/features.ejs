@@ -1,0 +1,17 @@
+<!-- ============== FRANJA DE FEATURES ============== -->
+<section class="features-strip">
+  <div class="container-fluid px-4 px-lg-5">
+    <div class="row align-items-center g-4">
+      <% data.features.forEach((feat, i) => { %>
+        <div class="col-md-4 reveal-up" style="--delay: <%= i * 0.1 %>s">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi <%= feat.icon %>"></i>
+            </div>
+            <span class="feature-title"><%= feat.title %></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

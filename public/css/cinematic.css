@@ -1,0 +1,35 @@
+/* ================================================================
+   PROCESO — Imagen sticky con transición cinemática
+   ================================================================ */
+
+.process-sticky-img {
+  background: #ffffff !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Imágenes apiladas */
+.proc-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+
+  opacity: 0;
+  transform: scale(1.03);
+
+  transition:
+    opacity   0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  filter: drop-shadow(0 20px 48px rgba(0,0,0,0.12)) drop-shadow(0 6px 16px rgba(0,0,0,0.06));
+  will-change: opacity, transform;
+}
+
+/* Estado ACTIVA */
+.proc-img--on {
+  opacity: 1;
+  transform: scale(1);
+}

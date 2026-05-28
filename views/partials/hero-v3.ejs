@@ -1,0 +1,95 @@
+<!-- ============== HERO V3 — Cinematic Dark / Product Launch ============== -->
+<section class="hero-v3" id="hero">
+
+  <!-- Glows de fondo -->
+  <div class="hv3-bg-top"></div>
+  <div class="hv3-bg-center"></div>
+
+  <!-- Texto: parte superior -->
+  <div class="hv3-upper">
+
+    <div class="hv3-eyebrow">
+      <span class="hv3-dash">——</span>
+      Empaques Guardian
+    </div>
+
+    <h1 class="hv3-title">
+      <span class="hv3-line" style="--d:.3s">Cada empaque,</span>
+      <span class="hv3-line hv3-line--serif" style="--d:.5s">una historia.</span>
+    </h1>
+
+    <p class="hv3-sub" style="--d:.75s">
+      Packaging premium diseñado para marcas que quieren diferenciarse.<br>
+      Producción a medida, grado alimenticio, entrega directa.
+    </p>
+
+    <div class="hv3-ctas" style="--d:.95s">
+      <a href="#contactar" class="hv3-btn-primary">
+        <span>Cotizar proyecto</span>
+        <i class="bi bi-arrow-right"></i>
+      </a>
+      <a href="#productos" class="hv3-btn-ghost">Ver catálogo</a>
+    </div>
+
+  </div>
+
+  <!-- Productos: parte inferior tipo vitrina -->
+  <div class="hv3-shelf">
+    <div class="hv3-shelf-glow"></div>
+
+    <div class="hv3-prod-row">
+
+      <div class="hv3-pcard" style="--d:.35s; --lift:0px">
+        <div class="hv3-pcard-img">
+          <img src="/img/hero-pouch.jpg" alt="Bolsas Personalizadas" draggable="false">
+        </div>
+        <span class="hv3-pcard-label">Bolsas Pouch</span>
+      </div>
+
+      <div class="hv3-pcard hv3-pcard--featured" style="--d:.5s; --lift:-24px">
+        <div class="hv3-pcard-img">
+          <img src="/img/hero-caja.jpg" alt="Cajas de Cartón" draggable="false">
+        </div>
+        <span class="hv3-pcard-label">Cajas de Cartón</span>
+      </div>
+
+      <div class="hv3-pcard hv3-pcard--featured" style="--d:.65s; --lift:-24px">
+        <div class="hv3-pcard-img">
+          <img src="/img/hero-sachet.jpg" alt="Sachets / 3 Sellos" draggable="false">
+        </div>
+        <span class="hv3-pcard-label">Sachets</span>
+      </div>
+
+      <div class="hv3-pcard" style="--d:.8s; --lift:0px">
+        <div class="hv3-pcard-img">
+          <img src="/img/hero-tubo.jpg" alt="Tubos de Cartón" draggable="false">
+        </div>
+        <span class="hv3-pcard-label">Tubos de Cartón</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll -->
+  <div class="scroll-indicator scroll-indicator--light">
+    <span>Scroll</span>
+    <div class="scroll-line scroll-line--light"></div>
+  </div>
+
+</section>
+
+<script>
+// Navbar en modo oscuro mientras hero-v3 esté visible
+(function () {
+  var nav = document.getElementById('navbar');
+  if (!nav) return;
+  nav.classList.add('nav-on-dark');
+
+  var hero = document.getElementById('hero');
+  if (!hero) return;
+  new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) nav.classList.add('nav-on-dark');
+    else nav.classList.remove('nav-on-dark');
+  }, { threshold: 0.05 }).observe(hero);
+})();
+</script>

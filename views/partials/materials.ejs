@@ -1,0 +1,32 @@
+<!-- ============== MATERIALES (Sustratos) ============== -->
+<section class="materials-section" id="materiales">
+  <div class="container-fluid px-4 px-lg-5">
+    <div class="row mb-5">
+      <div class="col-lg-7">
+        <span class="section-eyebrow reveal-up">Sustratos <small class="opacity-50">(<%= data.materials.length %>)</small></span>
+        <h2 class="section-title reveal-up delay-1">
+          La base perfecta para un <span class="serif-italic">empaque funcional</span>.
+        </h2>
+        <p class="section-lead reveal-up delay-2">
+          [Reemplaza con un párrafo que explique tus materiales o sustratos.]
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <% data.materials.forEach((m, i) => { %>
+        <div class="col-md-6 col-lg-4 reveal-up" style="--delay: <%= i * 0.15 %>s">
+          <article class="material-card">
+            <div class="material-img">
+              <div class="placeholder-img">
+                <span>[ /img/material-<%= i+1 %>.png ]</span>
+              </div>
+            </div>
+            <h3 class="material-name"><%= m.name %></h3>
+            <p class="material-desc"><%= m.desc %></p>
+          </article>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

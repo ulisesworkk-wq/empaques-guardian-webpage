@@ -1,0 +1,51 @@
+<!-- ============== PROCESO — Sticky Scroll ============== -->
+<section class="process-section" id="proceso">
+  <div class="container-fluid px-4 px-lg-5">
+
+    <!-- Encabezado -->
+    <div class="process-header">
+      <span class="section-eyebrow">Proceso</span>
+      <h2 class="section-title">
+        De la idea<br>a tu <span class="serif-italic">almacén.</span>
+      </h2>
+      <p class="process-header-sub">
+        En tres simples pasos. Sin intermediarios, sin sorpresas.
+      </p>
+    </div>
+
+    <!-- Layout sticky: imagen izquierda, pasos derecha -->
+    <div class="process-body">
+
+      <!-- ══ COLUMNA IZQUIERDA — imagen sticky ══ -->
+      <div class="process-sticky-col">
+        <div class="process-sticky-img" id="procImg">
+
+          <img class="proc-img proc-img--on" src="/img/motion/paso1.png" alt="Cuéntanos tu idea" loading="eager" data-img="0">
+          <img class="proc-img"             src="/img/motion/paso2.png" alt="Diseñamos tu empaque" loading="lazy" data-img="1">
+          <img class="proc-img"             src="/img/motion/paso3.png" alt="Entrega premium" loading="lazy" data-img="2">
+
+        </div>
+      </div>
+
+      <!-- ══ COLUMNA DERECHA — Pasos ══ -->
+      <div class="process-steps-col">
+        <% data.steps.forEach(function(step, i) { %>
+          <div class="process-step<%= i === 0 ? ' is-active' : '' %>" data-step-index="<%= i %>">
+            <p class="process-step-num"><%= step.num %></p>
+            <h3 class="process-step-title"><%= step.title %></h3>
+            <p class="process-step-desc"><%= step.desc %></p>
+          </div>
+        <% }) %>
+
+        <div class="process-cta reveal-up">
+          <p class="process-cta-label">¿Listo para empezar?</p>
+          <a href="#cotizador" class="btn-primary-custom">
+            <span>Cotiza tu empaque</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /process-body -->
+  </div>
+</section>

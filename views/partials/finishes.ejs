@@ -1,0 +1,32 @@
+<!-- ============== ACABADOS ============== -->
+<section class="finishes-section">
+  <div class="container-fluid px-4 px-lg-5">
+    <div class="row mb-5">
+      <div class="col-lg-7">
+        <span class="section-eyebrow reveal-up">Acabados <small class="opacity-50">(<%= data.finishes.length %>)</small></span>
+        <h2 class="section-title reveal-up delay-1">
+          Realza cada detalle con <span class="serif-italic">acabados únicos</span>.
+        </h2>
+        <p class="section-lead reveal-up delay-2">
+          [Reemplaza con un párrafo que explique tus acabados.]
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <% data.finishes.forEach((f, i) => { %>
+        <div class="col-md-6 col-lg-4 reveal-up" style="--delay: <%= i * 0.15 %>s">
+          <article class="finish-card">
+            <div class="finish-img">
+              <div class="placeholder-img">
+                <span>[ /img/finish-<%= i+1 %>.png ]</span>
+              </div>
+            </div>
+            <h3 class="finish-name"><%= f.name %></h3>
+            <p class="finish-desc"><%= f.desc %></p>
+          </article>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

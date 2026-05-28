@@ -1,0 +1,156 @@
+<!-- ============== HERO ============== -->
+<section class="hero" id="hero">
+  <div class="hero-gradient"></div>
+
+  <div class="container-fluid h-100 px-4 px-lg-5">
+    <div class="row h-100 align-items-center g-0">
+
+      <!-- Texto -->
+      <div class="col-lg-5 hero-text">
+        <h1 class="hero-title">
+          <span class="line"><span class="line-inner">Empaques</span></span>
+          <span class="line"><span class="line-inner">que elevan</span></span>
+          <span class="line"><span class="line-inner">tu <span class="serif-italic">marca.</span></span></span>
+        </h1>
+        <p class="hero-subtitle reveal-up delay-3">
+          <%= data.hero.subtitle %>
+        </p>
+        <div class="hero-cta reveal-up delay-4">
+          <a href="#contactar" class="btn-primary-custom">
+            <span><%= data.hero.ctaText %></span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Carrusel 3D -->
+      <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center hero-carousel-col">
+        <div class="hero-carousel-3d" id="heroCarousel">
+
+          <div class="hc3d-track" id="hc3dTrack">
+
+            <div class="hc3d-item" data-idx="0">
+              <div class="hc3d-img-wrap">
+                <img src="/img/hero-pouch.jpg" alt="Bolsas Personalizadas" draggable="false">
+              </div>
+            </div>
+
+            <div class="hc3d-item" data-idx="1">
+              <div class="hc3d-img-wrap">
+                <img src="/img/hero-caja.png" alt="Cajas de Cartón" draggable="false">
+              </div>
+            </div>
+
+            <div class="hc3d-item" data-idx="2">
+              <div class="hc3d-img-wrap">
+                <img src="/img/hero-sachet.jpg" alt="Sachets / 3 Sellos" draggable="false">
+              </div>
+            </div>
+
+            <div class="hc3d-item" data-idx="3">
+              <div class="hc3d-img-wrap">
+                <img src="/img/hero-tubo.jpg" alt="Tubos de Cartón" draggable="false">
+              </div>
+            </div>
+
+          </div><!-- /hc3d-track -->
+
+          <!-- Nombre del producto activo -->
+          <div class="hc3d-label-wrap">
+            <span class="hc3d-active-label" id="hc3dLabel">Bolsas Personalizadas</span>
+          </div>
+
+          <!-- Dots de navegación -->
+          <div class="hc3d-dots">
+            <button class="hc3d-dot" data-idx="0" aria-label="Bolsas"></button>
+            <button class="hc3d-dot" data-idx="1" aria-label="Cajas"></button>
+            <button class="hc3d-dot" data-idx="2" aria-label="Sachets"></button>
+            <button class="hc3d-dot" data-idx="3" aria-label="Tubos"></button>
+          </div>
+
+          <!-- Flechas -->
+          <button class="hc3d-arrow hc3d-arrow--prev" id="hc3dPrev" aria-label="Anterior">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="hc3d-arrow hc3d-arrow--next" id="hc3dNext" aria-label="Siguiente">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<script>
+(function () {
+  const LABELS = [
+    'Bolsas Personalizadas',
+    'Cajas de Cartón',
+    'Sachets / 3 Sellos',
+    'Tubos de Cartón'
+  ];
+
+  const SLUGS = [
+    '/productos/bolsas-personalizadas',
+    '/productos/cajas-carton',
+    '/productos/sachets-3-sellos',
+    '/productos/tubos-carton'
+  ];
+
+  const items  = document.querySelectorAll('.hc3d-item');
+  const dots   = document.querySelectorAll('.hc3d-dot');
+  const label  = document.getElementById('hc3dLabel');
+  const prevBtn = document.getElementById('hc3dPrev');
+  const nextBtn = document.getElementById('hc3dNext');
+  const track  = document.getElementById('hc3dTrack');
+  const n      = items.length;
+  let current  = 0;
+  let timer    = null;
+
+  function getState(i, active) {
+    const d = (i - active + n) % n;
+    if (d === 0) return 'active';
+    if (d === 1) return 'next';
+    if (d === n - 1) return 'prev';
+    return 'far';
+  }
+
+  function goTo(idx) {
+    current = ((idx % n) + n) % n;
+    items.forEach((el, i) => { el.className = 'hc3d-item ' + getState(i, current); });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    if (label) label.textContent = LABELS[current];
+  }
+
+  function resetAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 2200);
+  }
+
+  items.forEach((el, i) => el.addEventListener('click', () => {
+    if (i === current) { window.location.href = SLUGS[i]; return; }
+    goTo(i); resetAuto();
+  }));
+  dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); resetAuto(); }));
+  prevBtn?.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  nextBtn?.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+  // Swipe táctil
+  let sx = 0;
+  track?.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  track?.addEventListener('touchend', e => {
+    const dx = sx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) { goTo(current + (dx > 0 ? 1 : -1)); resetAuto(); }
+  });
+
+  goTo(0);
+  resetAuto();
+})();
+</script>

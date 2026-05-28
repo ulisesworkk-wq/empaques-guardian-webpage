@@ -1,0 +1,77 @@
+<!-- ============== COTIZADOR NATIVO — Branching dinámico por producto ============== -->
+<section id="cotizador" class="cotizador-section">
+
+  <div class="cot-blob cot-blob-navy"></div>
+  <div class="cot-blob cot-blob-yellow"></div>
+  <div class="cot-blob cot-blob-navy2"></div>
+
+  <div class="container cot-container">
+
+    <div class="cot-section-header reveal-up">
+      <p class="section-eyebrow">Cotizador Online</p>
+      <h2 class="section-title-light">
+        Diseña tu empaque<br><span class="serif-italic">en minutos.</span>
+      </h2>
+      <p class="cot-section-lead">
+        Cuéntanos qué necesitas. Un especialista te contacta en menos de 24 h.
+      </p>
+    </div>
+
+    <div class="cot-card reveal-up delay-2" id="cotCard">
+
+      <!-- Top bar: botón atrás + contador -->
+      <div class="cot-topbar" id="cotTopbar">
+        <button class="cot-back-btn" id="cotBackBtn" onclick="cot.back()">
+          <i class="bi bi-arrow-left"></i> Atrás
+        </button>
+        <div class="cot-counter">
+          PASO <span id="cotStepNum">01</span> / <span id="cotStepTotal">03</span>
+        </div>
+        <div class="cot-topbar-gap"></div>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="cot-progress-bar">
+        <div class="cot-progress-fill" id="cotProgress"></div>
+      </div>
+
+      <!-- Viewport: un solo panel renderizado dinámicamente -->
+      <div class="cot-viewport" id="cotViewport">
+        <div class="cot-content" id="cotContent">
+          <!-- cotizador.js renderiza aquí cada paso -->
+        </div>
+      </div>
+
+      <!-- Footer con botón continuar / enviar -->
+      <div class="cot-footer" id="cotFooter">
+        <button class="cot-btn-next" id="cotNextBtn" onclick="cot.next()">
+          Continuar <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Overlay de éxito con checkmark + partículas -->
+      <div class="cot-success-overlay" id="cotSuccess" style="display:none">
+        <div class="cot-success-inner">
+          <div class="cot-checkmark-wrap" id="cotCheckmark">
+            <svg class="cot-check-svg" viewBox="0 0 80 80" fill="none">
+              <circle class="cot-check-circle" cx="40" cy="40" r="36"/>
+              <path  class="cot-check-path"   d="M23 41l13 13 21-24"/>
+            </svg>
+          </div>
+          <div class="cot-particles-wrap" id="cotParticles"></div>
+          <h3 class="cot-title" style="text-align:center;margin-top:28px">¡Cotización enviada!</h3>
+          <p class="cot-lead" style="text-align:center;max-width:360px;margin:10px auto 32px">
+            Gracias, <strong id="cotSuccessName"></strong>. Un especialista te contactará
+            en menos de 24&nbsp;h por correo o WhatsApp.
+          </p>
+          <div style="text-align:center">
+            <button class="cot-btn-next" onclick="cot.reset()">
+              Nueva cotización <i class="bi bi-arrow-repeat"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cot-card -->
+  </div><!-- /container -->
+</section>

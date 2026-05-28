@@ -1,0 +1,132 @@
+<!-- ============== CONTACTO ============== -->
+<section class="contact-section" id="contactar">
+  <div class="container-fluid px-4 px-lg-5">
+    <div class="row mb-5">
+      <div class="col-lg-9">
+        <h2 class="contact-title reveal-up">Listos para <span class="serif-italic">empacar tu idea</span></h2>
+        <p class="contact-lead reveal-up delay-1">
+          ¿Tienes un proyecto en mente o necesitas una solución a medida?
+          Completa el formulario y uno de nuestros especialistas te contactará.
+        </p>
+      </div>
+    </div>
+
+    <form class="contact-form reveal-up delay-2" action="/contacto" method="POST">
+      <p class="form-required-note"><span>*</span> Campos requeridos</p>
+
+      <!-- Información de contacto -->
+      <div class="form-group-block">
+        <h4 class="form-group-title">Información de contacto</h4>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="form-label">Nombre <span>*</span></label>
+            <input type="text" name="nombre" class="form-control-custom" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Correo electrónico <span>*</span></label>
+            <input type="email" name="email" class="form-control-custom" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Teléfono <span>*</span></label>
+            <input type="tel" name="telefono" class="form-control-custom" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Empresa / Organización</label>
+            <input type="text" name="empresa" class="form-control-custom">
+          </div>
+        </div>
+      </div>
+
+      <!-- Información del proyecto -->
+      <div class="form-group-block">
+        <h4 class="form-group-title">Información del proyecto</h4>
+
+        <label class="form-label">Segmento <span>*</span></label>
+        <div class="segment-options">
+          <label class="segment-option">
+            <input type="radio" name="segmento" value="alimentos" required>
+            <div class="segment-content">
+              <i class="bi bi-egg-fried"></i>
+              <span>Alimentos</span>
+            </div>
+          </label>
+          <label class="segment-option">
+            <input type="radio" name="segmento" value="salud">
+            <div class="segment-content">
+              <i class="bi bi-heart-pulse"></i>
+              <span>Salud, Belleza y Hogar</span>
+            </div>
+          </label>
+          <label class="segment-option">
+            <input type="radio" name="segmento" value="pet">
+            <div class="segment-content">
+              <i class="bi bi-piggy-bank"></i>
+              <span>Pet</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="row g-4 mt-2">
+          <div class="col-md-6">
+            <label class="form-label">Producto que manejan</label>
+            <input type="text" name="producto" class="form-control-custom">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Cantidad de piezas <span>*</span></label>
+            <input type="number" name="cantidad" class="form-control-custom" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">¿Cuenta con diseño?</label>
+            <select name="diseno" class="form-control-custom">
+              <option value="">Selecciona</option>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Ubicación / Estado</label>
+            <select name="estado" class="form-control-custom">
+              <option value="">Selecciona</option>
+              <option>Aguascalientes</option>
+              <option>Baja California</option>
+              <option>Ciudad de México</option>
+              <option>Jalisco</option>
+              <option selected>Nuevo León</option>
+              <!-- TODO: completa la lista -->
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Fecha estimada de inicio</label>
+            <input type="date" name="fecha" class="form-control-custom">
+          </div>
+        </div>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="form-group-block">
+        <h4 class="form-group-title">Información adicional</h4>
+        <label class="form-label">Me interesa:</label>
+        <div class="checks-row">
+          <label class="check-pill"><input type="checkbox" name="interes_cita"> <span>Agendar una cita</span></label>
+          <label class="check-pill"><input type="checkbox" name="interes_cot"> <span>Solicitar una cotización</span></label>
+          <label class="check-pill"><input type="checkbox" name="interes_info"> <span>Recibir más información</span></label>
+        </div>
+
+        <div class="mt-4">
+          <label class="form-label">Comentarios</label>
+          <textarea name="comentarios" rows="4" class="form-control-custom"></textarea>
+        </div>
+      </div>
+
+      <p class="form-tos">
+        Al hacer click en "Enviar solicitud" aceptas los
+        <a href="#">Términos y Condiciones</a>.
+      </p>
+
+      <button type="submit" class="btn-primary-custom btn-submit">
+        <span>Enviar solicitud</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </form>
+  </div>
+</section>
