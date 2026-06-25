@@ -137,7 +137,7 @@
       <% product.variants.forEach(function(v, i) { %>
         <div class="pdp-format-card pdp-reveal" style="--d:<%= i * 70 %>ms">
           <div class="pdp-format-img">
-            <img src="/img/<%= v.img %>" alt="<%= v.label %>" loading="lazy">
+            <img src="/img/<%= v.img %>.webp" onerror="this.onerror=null;this.src='/img/<%= v.img %>'" alt="<%= v.label %>" loading="lazy">
           </div>
           <p class="pdp-format-lbl"><%= v.label %></p>
         </div>
@@ -161,7 +161,7 @@
       <% product.finishes.forEach(function(f, i) { %>
         <div class="pdp-finish-card pdp-reveal" style="--d:<%= i * 45 %>ms">
           <div class="pdp-finish-img">
-            <img src="/img/<%= f.img %>" alt="<%= f.label %>" loading="lazy">
+            <img src="/img/<%= f.img %>.webp" onerror="this.onerror=null;this.src='/img/<%= f.img %>'" alt="<%= f.label %>" loading="lazy">
           </div>
           <span class="pdp-finish-lbl"><%= f.label %></span>
         </div>
@@ -230,7 +230,7 @@
     <div class="pdp-gallery-grid">
       <% product.examples.forEach(function(ex, i) { %>
         <div class="pdp-gallery-item pdp-gallery-item--<%= i + 1 %> pdp-reveal" style="--d:<%= i * 60 %>ms">
-          <img src="/img/<%= ex.img %>" alt="<%= ex.label %>" loading="lazy">
+          <img src="/img/<%= ex.img %>.webp" onerror="this.onerror=null;this.src='/img/<%= ex.img %>'" alt="<%= ex.label %>" loading="lazy">
           <span class="pdp-gallery-lbl"><%= ex.label %></span>
         </div>
       <% }) %>
