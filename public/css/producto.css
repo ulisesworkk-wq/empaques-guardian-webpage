@@ -721,6 +721,18 @@
 }
 .pdp-gallery-item:hover img { transform: scale(1.05); }
 
+/* Celdas alta (1) y ancha (4): mostrar la imagen COMPLETA sin recorte.
+   Evita franjas/zoom en mockups verticales y reduce la borrosidad de
+   las imágenes de baja resolución (al no ampliarlas tanto). */
+.pdp-gallery-item--1 img { object-fit: contain; }
+.pdp-gallery-item--4 img {
+  object-fit: contain;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.pdp-gallery-item--1,
+.pdp-gallery-item--4 { background: #f4f2ee; }
+
 .pdp-gallery-lbl {
   position: absolute;
   bottom: 0;
