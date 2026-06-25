@@ -57,7 +57,7 @@
       <span class="pdp-hero-num"><%= product.num %></span>
       <div class="pdp-hero-img-wrap">
         <img
-          src="/img/<%= product.slug %>.jpg"
+          src="/img/<%= product.slug %>.jpg.webp" onerror="this.onerror=null;this.src='/img/<%= product.slug %>.jpg'"
           alt="<%= product.name %>"
           class="pdp-hero-img"
           onerror="this.src='/img/<%= product.slug %>.png'; this.onerror=null;"

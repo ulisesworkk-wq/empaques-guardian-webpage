@@ -18,14 +18,14 @@
         <div class="gallery-item">
           <% if (g.link) { %>
             <a href="<%= g.link %>" class="gallery-img-wrap gallery-img-wrap--linked">
-              <img src="/img/<%= g.img %>" alt="<%= g.name %>" loading="lazy">
+              <img src="/img/<%= g.img %>.webp" onerror="this.onerror=null;this.src='/img/<%= g.img %>'" alt="<%= g.name %>" loading="lazy">
               <div class="gallery-overlay">
                 <span class="gallery-overlay-btn">Ver ejemplos <i class="bi bi-arrow-right"></i></span>
               </div>
             </a>
           <% } else { %>
             <div class="gallery-img-wrap">
-              <img src="/img/<%= g.img %>" alt="<%= g.name %>" loading="lazy">
+              <img src="/img/<%= g.img %>.webp" onerror="this.onerror=null;this.src='/img/<%= g.img %>'" alt="<%= g.name %>" loading="lazy">
             </div>
           <% } %>
           <span class="gallery-name"><%= g.name %></span>

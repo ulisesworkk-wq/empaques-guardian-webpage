@@ -103,7 +103,7 @@ const cot = (function () {
                   <input type="radio" name="${id}" value="${esc(o.value)}" hidden${cur===o.value?' checked':''}>
                   <div class="cot-img-thumb">
                     ${o.img
-                      ? `<img src="${o.img}" alt="${o.label}" loading="lazy">`
+                      ? `<img src="${o.img}.webp" onerror="this.onerror=null;this.src='${o.img}'" alt="${o.label}" loading="lazy">`
                       : `<div class="cot-img-placeholder"><i class="bi bi-question-lg"></i></div>`}
                     <span class="cot-img-check"><i class="bi bi-check2"></i></span>
                   </div>
@@ -150,7 +150,7 @@ const cot = (function () {
                   <input type="checkbox" name="${id}" value="${esc(o.label||o)}"${cur.includes(o.label||o)?' checked':''} hidden>
                   <div class="cot-img-thumb">
                     ${o.img
-                      ? `<img src="${o.img}" alt="${o.label||o}" loading="lazy">`
+                      ? `<img src="${o.img}.webp" onerror="this.onerror=null;this.src='${o.img}'" alt="${o.label||o}" loading="lazy">`
                       : `<div class="cot-img-placeholder"><i class="bi bi-dash"></i></div>`}
                     <span class="cot-img-check"><i class="bi bi-check2"></i></span>
                   </div>
@@ -312,7 +312,7 @@ const cot = (function () {
                 <div class="cot-pkg-inner">
                   <div class="cot-pkg-img cot-pkg-img--${pid}">
                     ${PRODUCT_IMG[pid]
-                      ? `<img class="cot-pkg-photo" src="${PRODUCT_IMG[pid]}" alt="${PRODUCT_LABELS[pid]}" loading="lazy">`
+                      ? `<img class="cot-pkg-photo" src="${PRODUCT_IMG[pid]}.webp" onerror="this.onerror=null;this.src='${PRODUCT_IMG[pid]}'" alt="${PRODUCT_LABELS[pid]}" loading="lazy">`
                       : `<div class="cot-pkg-svg-fallback"><i class="bi bi-box-seam"></i><span>Envases</span></div>`}
                     <div class="cot-pkg-check-dot"><i class="bi bi-check2"></i></div>
                     ${already.includes(pid)?'<div class="cot-pkg-done-badge">✓ Agregado — + otro</div>':''}
@@ -353,7 +353,7 @@ const cot = (function () {
               <div class="cot-pkg-inner">
                 <div class="cot-pkg-img cot-pkg-img--bolsas">
                   ${e.img
-                    ? `<img class="cot-pkg-photo" src="${e.img}" alt="${e.label}" loading="lazy"${e.zoom?` style="transform:scale(${e.zoom})"`:''}>`
+                    ? `<img class="cot-pkg-photo" src="${e.img}.webp" onerror="this.onerror=null;this.src='${e.img}'" alt="${e.label}" loading="lazy"${e.zoom?` style="transform:scale(${e.zoom})"`:''}>`
                     : `<div class="cot-pkg-svg-fallback"><i class="bi bi-question-lg"></i><span>Asesoría</span></div>`}
                   <div class="cot-pkg-check-dot"><i class="bi bi-check2"></i></div>
                 </div>
@@ -569,7 +569,7 @@ const cot = (function () {
     'tubos-acabado': makeOptionStep({ id:'tubos_acabado', title:'Acabado', stateKey:'currentProduct.config.acabado', options:[
       {value:'Laminación Matte',label:'Matte',desc:'Opaco, premium',         img:'/img/cotizador/tubo-ac-mate.jpg'},
       {value:'Laminación Brillante',label:'Brillante',desc:'Lustroso y vivo',img:'/img/cotizador/tubo-ac-brillante.avif'},
-      {value:'Soft Touch',label:'Soft Touch',desc:'Suave al tacto',          img:'/img/cotizador/tubo-ac-soft-touch.webp'},
+      {value:'Soft Touch',label:'Soft Touch',desc:'Suave al tacto',          img:'/img/cotizador/tubo-ac-soft-touch'},
     ]}),
 
     'tubos-especiales': makeCheckStep({ id:'tubos_especiales', title:'Acabados especiales', stateKey:'currentProduct.config.especiales', options:[
