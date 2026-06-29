@@ -321,6 +321,14 @@ const PRODUCT_LABELS_SRV = {
   cajas:  'Cajas de Cartón',       tubos:   'Tubos de Cartón',
   envases: 'Envases (Vidrio / Plástico)',
 };
+// Labels EXACTOS de la columna Producto (color_mm4a8fb2) en el board nuevo.
+// 'envases' no tiene label -> queda solo como texto en text_mm2dg4yh.
+const MONDAY_PRODUCTO_LABEL = {
+  bolsas:  'Bolsa Personalizada',
+  sachets: 'Sachet / 3 Sellos',
+  cajas:   'Caja de Cartón',
+  tubos:   'Tubo de Cartón',
+};
 const CONFIG_LABELS_SRV = {
   estilo:'Estilo', tipo:'Tipo', tamano:'Tamaño', medidas:'Medidas',
   specs:'Especificaciones', material:'Material', laminacion:'Laminación',
@@ -405,9 +413,12 @@ async function createMondayItem({ contact, productType, productLabel, quantity, 
   }
 
   // ── Status del board nuevo (por label) ────────────────────
-  cols['color_mm2dqdej'] = { label: 'No Contactado' }; // Estado
-  cols['color_mm4at295'] = { label: 'México' };        // País
-  cols['color_mm2dtfba'] = { label: '🔴 Frío' };        // Segmento (default)
+  cols['color_mm2dqdej'] = { label: 'No Contactado' }; // Estado de Venta
+  cols['color_mm4at295'] = { label: 'México' };        // Origen
+  cols['color_mm2dtfba'] = { label: 'Frío' };          // Segmento (default, sin emoji)
+  if (productType && MONDAY_PRODUCTO_LABEL[productType]) {
+    cols['color_mm4a8fb2'] = { label: MONDAY_PRODUCTO_LABEL[productType] }; // Producto
+  }
 
   // ── Fecha de solicitud ────────────────────────────────────
   if (C.col_fecha) {
@@ -460,11 +471,18 @@ async function createMondayItem({ contact, productType, productLabel, quantity, 
   return json.data?.create_item?.id;
 }
 
-async function createMondayLeads(body) {
+async function createMondayLeads(body, file) {
   const contact = {
     email: body.email, firstName: body.firstName, lastName: body.lastName,
     phone: body.phone, company: body.company,
   };
+
+  // El board nuevo no tiene columna File: el archivo de diseño va a Drive
+  // (manual o por automatización) y el link se pega en las notas. Aquí solo
+  // dejamos constancia del nombre para que ventas sepa que el cliente adjuntó.
+  const fileNote = file
+    ? `\n\n📎 Archivo de diseño adjunto por el cliente: ${file.originalname}\n   → Subir a Drive (carpeta del cliente) y pegar el link aquí.`
+    : '';
 
   let address = null;
   let addressBlock = '';
@@ -481,6 +499,7 @@ async function createMondayLeads(body) {
       ].filter(Boolean).join('\n');
     }
   } catch {}
+  addressBlock += fileNote; // el nombre del archivo queda en las notas de cada item
 
 
   let products = [];
@@ -511,6 +530,7 @@ async function createMondayLeads(body) {
 
     const id = await createMondayItem({
       contact,
+      productType:   product.type,
       productLabel,
       quantity:      product.config?.cantidad || '',
       productConfig: product.config || {},
@@ -572,13 +592,9 @@ app.post('/api/cotizacion', formLimiter, upload.single('archivo'), (req, res) =>
       try { parsed = JSON.parse(req.body.productsJson || '[]'); } catch(e) { console.log('JSON parse error:', e.message); }
       console.log('Productos parseados:', parsed.length, JSON.stringify(parsed, null, 2));
 
-      const itemIds = await createMondayLeads(req.body);
-      if (req.file && itemIds.length > 0) {
-        for (const id of itemIds) {
-          await uploadFileToMonday(id, req.file)
-            .catch(err => console.warn('File upload (non-blocking):', err.message));
-        }
-      }
+      const itemIds = await createMondayLeads(req.body, req.file);
+      // El board nuevo no tiene columna File: el archivo va a Drive (el nombre
+      // se anota en long_text_mm2de0a0). La subida real a Drive es aparte.
       console.log('Leads creados en Monday:', itemIds);
     } catch (err) {
       console.error('Monday (non-blocking):', err.message);
