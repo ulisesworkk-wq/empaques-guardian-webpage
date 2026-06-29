@@ -352,28 +352,19 @@ async function createMondayItem({ contact, productType, productLabel, quantity, 
 
   // ── Contacto ──────────────────────────────────────────────
   if (contact.email) {
-    cols['lead_email'] = { email: contact.email, text: contact.email };
-    if (C.col_email) cols[C.col_email] = { email: contact.email, text: contact.email };
+    cols['email_mm2ds3zy'] = { email: contact.email, text: contact.email };
   }
   const digits = (contact.phone || '').replace(/\D/g, '');
   if (digits.length >= 7) {
-    cols['lead_phone'] = { phone: contact.phone, countryShortName: 'MX' };
-    if (C.col_phone) cols[C.col_phone] = { phone: contact.phone, countryShortName: 'MX' };
+    cols['phone_mm2dq1tf'] = { phone: contact.phone, countryShortName: 'MX' };
   }
   const empresa = contact.company || '';
   if (empresa) {
-    cols['lead_company'] = empresa;
-    if (C.col_empresa) cols[C.col_empresa] = empresa;
+    cols['text_mm2dj7mp'] = empresa;
   }
 
-  // ── Tipo y cantidad (columnas originales + nuevas) ────────
-  if (C.col_tipo_empaque) cols[C.col_tipo_empaque] = productLabel || '';
-  cols['text_mm35cd7m'] = productLabel || '';
-  cols['text']          = productLabel || '';
-  if (quantity) {
-    if (C.col_cantidad) cols[C.col_cantidad] = quantity;
-    cols['text_mm35j3qn'] = quantity;
-  }
+  // ── Tipo de empaque (la cantidad ahora va dentro de las notas) ──
+  cols['text_mm2dg4yh'] = productLabel || '';
 
   // ── Configuración del producto (columnas dedicadas) ───────
   if (productConfig) {
@@ -413,9 +404,10 @@ async function createMondayItem({ contact, productType, productLabel, quantity, 
     }
   }
 
-  // ── Estado inicial ─────────────────────────────────────────
-  cols['lead_status']    = { index: 0 };
-  cols['color_mm1gcy3t'] = { index: 5 };
+  // ── Status del board nuevo (por label) ────────────────────
+  cols['color_mm2dqdej'] = { label: 'No Contactado' }; // Estado
+  cols['color_mm4at295'] = { label: 'México' };        // País
+  cols['color_mm2dtfba'] = { label: '🔴 Frío' };        // Segmento (default)
 
   // ── Fecha de solicitud ────────────────────────────────────
   if (C.col_fecha) {
@@ -431,14 +423,15 @@ async function createMondayItem({ contact, productType, productLabel, quantity, 
   const notasTexto = [
     `📋 COTIZACIÓN — ${fecha}`,
     `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    quantity ? `Cantidad estimada: ${quantity}` : '',
     productNotes,
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 
-  cols['long_text_mm35x7ww'] = { text: notasTexto };
-  if (C.col_detalle) cols[C.col_detalle] = { text: notasTexto };
+  cols['long_text_mm2de0a0'] = { text: notasTexto };
 
   // ── Crear item ────────────────────────────────────────────
   const fullName = [contact.firstName, contact.lastName].filter(Boolean).join(' ');
+  if (fullName) cols['text_mm4ahh18'] = fullName; // Contacto (nombre + apellido)
   const name = fullName + (productLabel ? ` — ${productLabel}` : '');
 
   const query = `
